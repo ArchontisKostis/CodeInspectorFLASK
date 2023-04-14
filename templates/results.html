@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% block results_content %}
+    <h1>Analysis Results</h1>
+    <h3>Project Name: {{ analysis_results.project_name }}</h3>
+    <h3>
+        Total Commits:
+        {{ analysis_results.project.get_number_of_commits() }}
+    </h3>
+
+    <h3>
+        Period:
+        <p>
+            From: {{ start_date }}
+            <br>
+            To: {{ end_date }}
+        </p>
+
+    </h3>
+
+        {% if analysis_results.project.commits %}
+        <h3>Commits</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>hash</th>
+                    <th>author</th>
+                    <th>message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commit in analysis_results.project.commits %}
+                    <tr>
+                        <td>{{ commit.hash }}</td>
+                        <td>{{ commit.author.name }}</td>
+                        <td>{{ commit.msg }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    {% if analysis_results.project.modified_files %}
+        <h3>Files</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>filename</th>
+                    <th>complexity</th>
+                    <th>nloc</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in analysis_results.project.modified_files %}
+                    <tr>
+                        <td>{{ file.filename }}</td>
+                        <td>{{ file.complexity }}</td>
+                        <td>{{ file.nloc }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock results_content %}
