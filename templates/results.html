@@ -6,55 +6,58 @@
         Total Commits:
         {{ analysis_results.project.get_number_of_commits() }}
     </h3>
+    <hr>
 
-    <h3>
-        Period:
-        <p>
-            From: {{ start_date }}
-            <br>
-            To: {{ end_date }}
-        </p>
+    {% if plot_html %}
+        <h3>Hotspot Matrix</h3>
+        <div>
+            <!-- Placeholder for the Matplotlib chart -->
+            <div id="chart">
+                {{ plot_html | safe }}
+            </div>
+        </div>
+    {% endif %}
 
-    </h3>
-
-        {% if analysis_results.project.commits %}
-        <h3>Commits</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>hash</th>
-                    <th>author</th>
-                    <th>message</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for commit in analysis_results.project.commits %}
-                    <tr>
-                        <td>{{ commit.hash }}</td>
-                        <td>{{ commit.author.name }}</td>
-                        <td>{{ commit.msg }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+{#        {% if analysis_results.project.commits %}#}
+{#        <h3>Commits</h3>#}
+{#        <table>#}
+{#            <thead>#}
+{#                <tr>#}
+{#                    <th>hash</th>#}
+{#                    <th>author</th>#}
+{#                    <th>message</th>#}
+{#                </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#                {% for commit in analysis_results.project.commits %}#}
+{#                    <tr>#}
+{#                        <td>{{ commit.hash }}</td>#}
+{#                        <td>{{ commit.author.name }}</td>#}
+{#                        <td>{{ commit.msg }}</td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#        {% endif %}#}
 
     {% if analysis_results.project.modified_files %}
-        <h3>Files</h3>
+        <h3>Modified Files</h3>
         <table>
             <thead>
                 <tr>
                     <th>filename</th>
                     <th>complexity</th>
                     <th>nloc</th>
+                    <th>churn</th>
                 </tr>
             </thead>
             <tbody>
                 {% for file in analysis_results.project.modified_files %}
                     <tr>
-                        <td>{{ file.filename }}</td>
-                        <td>{{ file.complexity }}</td>
-                        <td>{{ file.nloc }}</td>
+                        <td>{{ file.name }}</td>
+                        <td>{{ file.metrics['CC'] }}</td>
+                        <td>{{ file.metrics['NLOC'] }}</td>
+                        <td>{{ file.metrics['CHURN'] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
