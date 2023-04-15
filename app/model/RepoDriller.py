@@ -38,7 +38,7 @@ class RepoDriller:
 
     def find_modified_files(self):
         modified_files = []
-        for commit in self.get_commits():
+        for commit in self.repo.traverse_commits():     # self.get_commits() seems like this gives us a git error
             self.find_modified_files_for_commit(commit, modified_files)
         return modified_files
 
