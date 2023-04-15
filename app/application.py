@@ -12,7 +12,7 @@ blueprint = Blueprint('application', __name__)
 
 
 @blueprint.route('/', methods=('POST', 'GET'))
-def index(px=None):
+def index():
     filetypes = ['.java']
 
     try:
