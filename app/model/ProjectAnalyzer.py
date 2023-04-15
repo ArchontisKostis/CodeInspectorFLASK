@@ -27,7 +27,7 @@ class ProjectAnalyzer:
             self.analysis.set_project_name(project_name)
 
         else:
-            flash('No commits found in the specified period. Using a larger Date Range could help.')
+            flash(f"No commits for: {self.repo_url}. Using a larger Date Range could help.")
 
     def find_project_modified_files(self):
         repo_files = []
