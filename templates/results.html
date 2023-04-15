@@ -18,49 +18,27 @@
         </div>
     {% endif %}
 
-{#        {% if analysis_results.project.commits %}#}
-{#        <h3>Commits</h3>#}
-{#        <table>#}
-{#            <thead>#}
-{#                <tr>#}
-{#                    <th>hash</th>#}
-{#                    <th>author</th>#}
-{#                    <th>message</th>#}
-{#                </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#                {% for commit in analysis_results.project.commits %}#}
-{#                    <tr>#}
-{#                        <td>{{ commit.hash }}</td>#}
-{#                        <td>{{ commit.author.name }}</td>#}
-{#                        <td>{{ commit.msg }}</td>#}
-{#                    </tr>#}
-{#                {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
-{#        {% endif %}#}
-
     {% if analysis_results.project.modified_files %}
         <h3>Modified Files</h3>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>filename</th>
-                    <th>complexity</th>
-                    <th>nloc</th>
-                    <th>churn</th>
+                  <th scope="col">Filename</th>
+                  <th scope="col">NLOC</th>
+                  <th scope="col">CC</th>
+                  <th scope="col">CHURN</th>
                 </tr>
-            </thead>
-            <tbody>
-                {% for file in analysis_results.project.modified_files %}
-                    <tr>
-                        <td>{{ file.name }}</td>
-                        <td>{{ file.metrics['CC'] }}</td>
-                        <td>{{ file.metrics['NLOC'] }}</td>
-                        <td>{{ file.metrics['CHURN'] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+          </thead>
+          <tbody>
+            {% for file in analysis_results.project.modified_files %}
+                <tr>
+                    <td>{{ file.name }}</td>
+                    <td>{{ file.metrics['NLOC'] }}</td>
+                    <td>{{ file.metrics['CC'] }}</td>
+                    <td>{{ file.metrics['CHURN'] }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
         </table>
     {% endif %}
 {% endblock results_content %}
