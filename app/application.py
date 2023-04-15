@@ -51,6 +51,7 @@ def index():
                          }
 
             fig = plotx.scatter(plot_data, x='churn', y='cc', hover_name='name')
+            fig.update_layout(title=results.project_name)
             plot_html = fig.to_html(full_html=False)  # Convert the Plotly figure to an HTML string
 
             for file in churn_dict:
