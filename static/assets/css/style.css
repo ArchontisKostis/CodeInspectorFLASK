@@ -26,3 +26,11 @@ thead {
   width:800px;
   height:500px;
 }
+
+.loading-container {
+  display: none;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
