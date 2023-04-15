@@ -1,12 +1,14 @@
+import logging
 import os
+import time
 
 from flask import Flask
 
 from app import application
 
-
 def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True, template_folder='../templates')
+    logging.basicConfig(level=logging.DEBUG)
+    app = Flask(__name__, instance_relative_config=True, template_folder='../templates', static_folder='../static')
     app.config.from_mapping(
         SECRET_KEY='dev',
     )
