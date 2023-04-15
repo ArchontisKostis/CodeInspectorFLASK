@@ -1,4 +1,5 @@
 import datetime
+import traceback
 
 from flask import Blueprint, render_template, request, flash
 from pydriller import Repository
@@ -57,6 +58,6 @@ def index(px=None):
 
             return render_template('results.html', analysis_results=results, plot_html=plot_html)
     except Exception:
-        pass
+        traceback.print_exc()
 
     return render_template('index.html')
