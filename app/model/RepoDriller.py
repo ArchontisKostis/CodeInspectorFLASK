@@ -7,12 +7,12 @@ from app.model.ProcessMetricsCalculator import ProcessMetricsCalculator
 class RepoDriller:
     def __init__(self, repo: Repository):
         self.repo = repo
+        self.commit_list = []
 
     def find_commits(self):
-        commit_list = []
         for commit in self.repo.traverse_commits():
-            commit_list.append(commit)
-        return commit_list
+            self.commit_list.append(commit)
+        return self.commit_list
 
     def find_project_name(self):
         commits = self.find_commits()
@@ -34,11 +34,11 @@ class RepoDriller:
 
             return {'first': first_commit, 'last': last_commit}
         else:
-            flash('Could not find first and last commit. No Commits to Repo.')
+            flash('Could not find first and last commit.')
 
     def find_modified_files(self):
         modified_files = []
-        for commit in self.repo.traverse_commits():
+        for commit in self.get_commits():
             self.find_modified_files_for_commit(commit, modified_files)
         return modified_files
 
@@ -50,3 +50,8 @@ class RepoDriller:
             'avg'
         )
         return churn
+
+    def get_commits(self):
+        if len(self.commit_list) > 0:
+            return self.commit_list
+        return self.find_commits()
