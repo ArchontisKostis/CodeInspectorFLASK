@@ -1,23 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
+
+
     <h1><a href="/">FGHA</a></h1>
-    <form method="post">
+    <form method="post" onsubmit="showLoading()">
         <label>
             Repo URL:
-            <input type="url" id="repo-url" name="repo-url">
+            <input type="url" class="form-control" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
         </label>
         <label>
             From Date:
-            <input type="date" name="from-date-input">
+            <input type="date" class="form-control" name="from-date-input">
         </label>
         <label>
             To Date:
-            <input type="date" name="to-date-input">
+            <input type="date" class="form-control" name="to-date-input">
         </label>
-        <input type="submit" value="Analyse">
+        <input type="submit" value="Analyse" class="btn btn-primary">
     </form>
 
     <hr>
+
+    <div class="loading-container" id="loading">
+        <h3>Loading analysis</h3>
+        <p> This might take a while...</p>
+        <div class="spinner-grow text-primary" role="status">
+        </div>
+    </div>
+
     {% for message in get_flashed_messages() %}
             <div class="alert alert-warning" role="alert">
                 {{ message }}
@@ -27,4 +37,20 @@
     {% block results_content %}
     {% endblock results_content %}
 
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            showLoading(); // Show loading spinner
+
+            // Manually submit the form after a delay (e.g., 1 second)
+            setTimeout(function() {
+                document.getElementById("myForm").submit();
+            }, 1000);
+        });
+
+        function showLoading() {
+            document.getElementById("loading").style.display = "flex";
+        }
+    </script>
 {% endblock content %}
