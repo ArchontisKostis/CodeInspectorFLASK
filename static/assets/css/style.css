@@ -8,13 +8,11 @@ body {
   font-family: "Inter", sans-serif;
   color: #343a40;
   line-height: 1;
-  display: flex;
-  justify-content: center;
   min-height: 110vh;
 }
 
 .container {
-  padding-bottom: 10vh;
+  padding: 5vh;
 }
 
 thead {
