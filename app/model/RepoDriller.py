@@ -34,7 +34,7 @@ class RepoDriller:
 
             return {'first': first_commit, 'last': last_commit}
         else:
-            flash('Could not find first and last commit.')
+            flash('Could not find first and last commit.', 'warning')
 
     def find_modified_files(self):
         modified_files = []
