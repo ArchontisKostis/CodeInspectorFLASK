@@ -3,8 +3,9 @@
     <form method="post" onsubmit="showLoading()">
         <label>
             Repo URL:
-            <input type="url" class="form-control" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
+            <input type="url" class="form-control input-large" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
         </label>
+
         <label>
             From Date:
             <input type="date" class="form-control" name="from-date-input">
@@ -13,7 +14,7 @@
             To Date:
             <input type="date" class="form-control" name="to-date-input">
         </label>
-        <input type="submit" value="Analyse" class="btn btn-primary">
+        <input type="submit" value="Analyse" class="btn btn-danger">
     </form>
 
     <hr>
@@ -21,7 +22,7 @@
     <div class="loading-container" id="loading">
         <h3>Loading analysis</h3>
         <p> This might take a while...</p>
-        <div class="spinner-grow text-primary" role="status">
+        <div class="spinner-grow text-danger" role="status">
         </div>
     </div>
 

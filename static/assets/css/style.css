@@ -11,6 +11,13 @@ body {
   min-height: 110vh;
 }
 
+nav a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
   padding: 5vh;
 }
