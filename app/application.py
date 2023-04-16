@@ -2,6 +2,7 @@ import datetime
 import traceback
 
 from flask import Blueprint, render_template, request, flash
+from git import GitCommandError
 from pydriller import Repository
 import plotly.express as plotx
 from pydriller.repository import MalformedUrl
@@ -22,6 +23,8 @@ def index():
             from_date = request.form['from-date-input']
             to_date = request.form['to-date-input']
 
+            # Create a repository based on wif we got any dates
+            # If no dates were provided we will get the repo from the beginning
             if (from_date or to_date) == '':
                 repo = Repository(
                     repo_url,
@@ -51,17 +54,23 @@ def index():
                          'cc': [point.get_metric('cc') for point in project_files]
                          }
 
+            # Make Plotly figure
             fig = plotx.scatter(plot_data, x='churn', y='cc', hover_name='name')
             fig.update_layout(title=results.project_name)
+
             plot_html = fig.to_html(full_html=False)  # Convert the Plotly figure to an HTML string
 
             for file in churn_dict:
                 print(f"Name: {file} | Churn: {churn_dict[file]}")
 
+            flash('Analysis Complete', 'success')
             return render_template('results.html', analysis_results=results, plot_html=plot_html)
+
     except MalformedUrl as e:
-        flash("The provided URL is not a git repository.")
-    except Exception:
+        flash('The provided URL is not a git repository.', 'danger')
+        traceback.print_exc()
+    except GitCommandError as e:
+        flash('Fatal Git Error. Make sure you provided a valid git repository url.', 'danger')
         traceback.print_exc()
 
     return render_template('index.html')
