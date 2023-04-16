@@ -1,16 +1,16 @@
 {% extends "index.html" %}
 {% block results_content %}
-    <h1>Analysis Results</h1>
+    <h1 class="text-light">Analysis Results</h1>
 
-    <h3>Project Name: {{ analysis_results.project_name }}</h3>
-    <h3>
+    <h3 class="text-light">Project Name: {{ analysis_results.project_name }}</h3>
+    <h3 class="text-light">
         Total Commits:
         {{ analysis_results.project.get_number_of_commits() }}
     </h3>
     <hr>
 
     {% if plot_html %}
-        <h3>Hotspot Matrix</h3>
+        <h3 class="text-light">Hotspot Matrix</h3>
         <div>
             <!-- Placeholder for the Matplotlib chart -->
             <div id="chart">
@@ -20,8 +20,8 @@
     {% endif %}
 
     {% if analysis_results.project.modified_files %}
-        <h3>Modified Files</h3>
-        <table class="table table-striped">
+        <h3 class="text-light">Modified Files</h3>
+        <table class="table table-striped table-light">
             <thead>
                 <tr>
                   <th scope="col">Filename</th>

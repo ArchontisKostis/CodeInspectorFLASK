@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post" onsubmit="showLoading()">
-        <label>
+    <form method="post" onsubmit="showLoading()" data-bs-theme="light">
+        <label class="text-light">
             Repo URL:
-            <input type="url" class="form-control input-large" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
+            <input required type="url" class="form-control input-large mt-1" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
         </label>
 
-        <label>
+        <label class="text-light">
             From Date:
-            <input type="date" class="form-control" name="from-date-input">
+            <input type="date" class="form-control mt-1" name="from-date-input">
         </label>
-        <label>
+        <label class="text-light">
             To Date:
-            <input type="date" class="form-control" name="to-date-input">
+            <input type="date" class="form-control mt-1" name="to-date-input">
         </label>
         <input type="submit" value="Analyse" class="btn btn-danger">
     </form>
@@ -20,15 +20,16 @@
     <hr>
 
     <div class="loading-container" id="loading">
-        <h3>Loading analysis</h3>
-        <p> This might take a while...</p>
+        <h3 class="text-light">Loading analysis</h3>
+        <p class="text-light"> This might take a while...</p>
         <div class="spinner-grow text-danger" role="status">
         </div>
     </div>
 
-    {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning" role="alert">
-                {{ message }}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert alert-{{ category }}" role="alert">
+                <div>{{ message }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
     {% endfor %}
 

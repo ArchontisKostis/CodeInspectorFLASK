@@ -22,14 +22,20 @@ nav a{
   padding: 5vh;
 }
 
-thead {
-  background-color: #212529;
-  color: whitesmoke;
+.alert {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #chart {
   width:800px;
   height:500px;
+}
+
+input {
+  padding-top: 0.5em;
 }
 
 .loading-container {
@@ -38,4 +44,5 @@ thead {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 1em;
 }
