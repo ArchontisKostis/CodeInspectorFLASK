@@ -1,12 +1,16 @@
 {% extends "index.html" %}
 {% block results_content %}
     <h1 class="text-light">Analysis Results</h1>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-light">Project Name: {{ analysis_results.project_name }}</h3>
+            <h3 class="text-light">
+                Total Commits:
+                {{ analysis_results.project.get_number_of_commits() }}
+            </h3>
+        </div>
+    </div>
 
-    <h3 class="text-light">Project Name: {{ analysis_results.project_name }}</h3>
-    <h3 class="text-light">
-        Total Commits:
-        {{ analysis_results.project.get_number_of_commits() }}
-    </h3>
     <hr>
 
     {% if plot_html %}
