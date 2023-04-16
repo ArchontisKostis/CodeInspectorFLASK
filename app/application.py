@@ -4,6 +4,7 @@ import traceback
 from flask import Blueprint, render_template, request, flash
 from pydriller import Repository
 import plotly.express as plotx
+from pydriller.repository import MalformedUrl
 
 from app.model.Project import Project
 from app.model.ProjectAnalyzer import ProjectAnalyzer
@@ -58,6 +59,8 @@ def index():
                 print(f"Name: {file} | Churn: {churn_dict[file]}")
 
             return render_template('results.html', analysis_results=results, plot_html=plot_html)
+    except MalformedUrl as e:
+        flash("The provided URL is not a git repository.")
     except Exception:
         traceback.print_exc()
 
