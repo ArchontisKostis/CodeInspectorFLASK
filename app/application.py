@@ -64,7 +64,7 @@ def index():
                 print(f"Name: {file} | Churn: {churn_dict[file]}")
 
             flash('Analysis Complete', 'success')
-            return render_template('results.html', analysis_results=results, plot_html=plot_html)
+            return render_template('results.html', analysis_results=results, plot_html=plot_html, repo_url=repo_url)
 
     except MalformedUrl as e:
         flash('The provided URL is not a git repository.', 'danger')
