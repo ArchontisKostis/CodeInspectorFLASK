@@ -67,8 +67,6 @@ class ProjectAnalyzer:
                 if repo_file.name in java_file:
                     repo_file.set_metric('churn', java_files_churn[java_file])
 
-        return java_files_churn
-
     def prioritize_hotspots(self, repo_file_list):
         max_cc = find_max_metric_value('cc', repo_file_list)
         max_churn = find_max_metric_value('churn', repo_file_list)
