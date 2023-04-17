@@ -14,6 +14,10 @@ body {
   min-height: 110vh;
 }
 
+.print-only {
+  display: none;
+}
+
 nav a{
   display: flex;
   flex-direction: row;
@@ -43,12 +47,21 @@ nav a{
 }
 
 #chart {
-  width:800px;
-  height:500px;
+  width: inherit;
+  height: 100%;
+  margin-bottom: 5vh;
+}
+
+svg .main-svg {
+  background-color: red;
 }
 
 input {
   padding-top: 0.5em;
+}
+
+.bi .bi-globe2 {
+  text-decoration: none !important;
 }
 
 .loading-container {
@@ -60,6 +73,3 @@ input {
   padding: 1em;
 }
 
-.card {
-
-}

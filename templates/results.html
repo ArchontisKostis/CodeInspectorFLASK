@@ -1,18 +1,36 @@
 {% extends "index.html" %}
 {% block results_content %}
-    <h1 class="text-light">Analysis Results</h1>
+    <h1 class="text-light">
+        <i class="bi bi-file-earmark-text"></i>
+        Analysis Results
+    </h1>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ analysis_results.project_name }}</h5>
+            <h5 class="card-title">
+                <i class="bi bi-git"></i>
+                {{ analysis_results.project_name }}
+            </h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">Total commits: {{ analysis_results.project.get_number_of_commits() }}</h6>
-            <a href="{{ repo_url }}" class="card-link">Repository url</a>
+            <a href="{{ repo_url }}" class="card-link">
+                <i class="bi bi-globe2"></i>
+                Repository url
+            </a>
+
+            <a href="{{ repo_url }}" class="card-link print-only">
+                <i class="bi bi-globe2"></i>
+                {{ repo_url }}
+            </a>
         </div>
     </div>
 
     <hr>
 
     {% if plot_html %}
-        <h3 class="text-light">Hotspot Matrix</h3>
+        <h3 class="text-light">
+            <i class="bi bi-graph-up"></i>
+            Hotspot Matrix
+        </h3>
+
         <div>
             <!-- Placeholder for the Matplotlib chart -->
             <div id="chart">
@@ -22,7 +40,10 @@
     {% endif %}
 
     {% if analysis_results.project.modified_files %}
-        <h3 class="text-light">Modified Files</h3>
+        <h3 class="text-light">
+            <i class="bi bi-file-earmark-code"></i>
+            Modified Files
+        </h3>
         <table class="table table-striped table-light">
             <thead>
                 <tr>
@@ -60,4 +81,8 @@
           </tbody>
         </table>
     {% endif %}
+    <button type="button" class="btn btn-danger" id="print-analysis-btn" onclick="window.print()">
+        <i class="bi bi-printer-fill"></i>
+        Print Analysis
+    </button>
 {% endblock results_content %}

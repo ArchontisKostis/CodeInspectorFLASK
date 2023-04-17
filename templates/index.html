@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post" onsubmit="showLoading()" data-bs-theme="light">
+    <form method="post" data-bs-theme="light" id="repo-input-form">
         <label class="text-light">
             Repo URL:
             <input required type="url" class="form-control input-large mt-1" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
@@ -13,20 +13,27 @@
             To:
             <input type="date" class="form-control mt-1" name="to-date-input">
         </label>
-        <input type="submit" value="Analyse" class="btn btn-danger mb-1">
+
+        <button type="submit" class="btn btn-danger mb-1">
+            <i class="bi bi-search"></i>
+            Inspect
+        </button>
+
     </form>
 
     <hr>
 
     {% for category, message in get_flashed_messages(with_categories=true) %}
         <div class="alert alert-{{ category }}" role="alert">
-            <div>{{ message }}</div>
+            <div>
+                {{ message }}
+            </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     {% endfor %}
 
     <div class="loading-container" id="loading">
-        <h3 class="text-light">Loading analysis</h3>
+        <h3 class="text-light">Analyzing Repository</h3>
         <p class="text-light"> This might take a while...</p>
         <div class="spinner-grow text-danger" role="status">
         </div>
@@ -35,20 +42,5 @@
     {% block results_content %}
     {% endblock results_content %}
 
-    <script>
-        document.getElementById("myForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission
-
-            showLoading(); // Show loading spinner
-
-            // Manually submit the form after a delay (e.g., 1 second)
-            setTimeout(function() {
-                document.getElementById("myForm").submit();
-            }, 500);
-        });
-
-        function showLoading() {
-            document.getElementById("loading").style.display = "flex";
-        }
-    </script>
+    <script src="../static/assets/js/app.js"></script>
 {% endblock content %}

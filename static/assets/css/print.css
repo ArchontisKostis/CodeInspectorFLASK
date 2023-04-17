@@ -1,0 +1,33 @@
+@media print {
+    form, .alert, #print-analysis-btn {
+      display: none;
+    }
+
+    .card-link {
+        display: none;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    .badge .rounded-pill .text-bg-success {
+      background-color: #198754 !important;
+    }
+    .badge .rounded-pill .text-bg-primary{
+
+    }
+    .badge .rounded-pill .text-bg-warning {
+        background-color: #ffc107 !important;
+    }
+
+    .badge .rounded-pill .text-bg-danger {
+        background-color: #dc3545 !important;
+    }
+
+    .badge .rounded-pill .text-bg-secondary {
+
+    }
+
+
+}
