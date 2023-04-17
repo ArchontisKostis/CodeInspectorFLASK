@@ -7,6 +7,7 @@ from pydriller import Repository
 import plotly.express as plotx
 from pydriller.repository import MalformedUrl
 
+from app.model import generate_random_files
 from app.model.Project import Project
 from app.model.ProjectAnalyzer import ProjectAnalyzer
 
@@ -44,7 +45,7 @@ def index():
             project_analyzer.initiate_analysis()
             project_analyzer.find_project_modified_files()
 
-            churn_dict = project_analyzer.calculate_churn()
+            project_analyzer.calculate_churn()
 
             results = project_analyzer.get_analysis()
             project_files = project_to_analyze.modified_files
@@ -54,14 +55,15 @@ def index():
                          'cc': [point.get_metric('cc') for point in project_files]
                          }
 
+            files = results.project.modified_files
+            project_analyzer.prioritize_hotspots(files)
+
             # Make Plotly figure
             fig = plotx.scatter(plot_data, x='churn', y='cc', hover_name='name')
             fig.update_layout(title=results.project_name)
 
             plot_html = fig.to_html(full_html=False)  # Convert the Plotly figure to an HTML string
 
-            for file in churn_dict:
-                print(f"Name: {file} | Churn: {churn_dict[file]}")
 
             flash('Analysis Complete', 'success')
             return render_template('results.html', analysis_results=results, plot_html=plot_html, repo_url=repo_url)
@@ -70,7 +72,7 @@ def index():
         flash('The provided URL is not a git repository.', 'danger')
         traceback.print_exc()
     except GitCommandError as e:
-        flash('Fatal Git Error. Make sure you provided a valid git repository url.', 'danger')
+        flash('Fatal Git Error.', 'danger')
         traceback.print_exc()
 
     return render_template('index.html')
