@@ -30,15 +30,31 @@
                   <th scope="col">NLOC</th>
                   <th scope="col">CC</th>
                   <th scope="col">CHURN</th>
+                  <th scope="col">PRIORITY</th>
                 </tr>
           </thead>
           <tbody>
-            {% for file in analysis_results.project.modified_files %}
+{#           #}
+            {% for file in  analysis_results.project.modified_files%}
                 <tr>
                     <td>{{ file.name }}</td>
                     <td>{{ file.metrics['NLOC'] }}</td>
                     <td>{{ file.metrics['CC'] }}</td>
                     <td>{{ file.metrics['CHURN'] }}</td>
+                    <td>
+{#                      Display the correct label depending on priority  #}
+                        {% if file.priority == 'LOW' %}
+                          <span class="badge rounded-pill text-bg-success">LOW</span>
+                        {% elif file.priority == 'NORMAL' %}
+                          <span class="badge rounded-pill text-bg-primary">NORMAL</span>
+                        {% elif file.priority == 'MEDIUM' %}
+                          <span class="badge rounded-pill text-bg-warning">MEDIUM</span>
+                        {% elif file.priority == 'HIGH' %}
+                          <span class="badge rounded-pill text-bg-danger">HIGH</span>
+                        {% else %}
+                          <span class="badge rounded-pill text-bg-secondary">NOT SET</span>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
           </tbody>
