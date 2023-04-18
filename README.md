@@ -1,6 +1,6 @@
 <h1 align="center">
   <img src="https://github.com/ArchontisKostis/CodeInspector/blob/master/static/assets/svg/logo_1.svg" width="48" height="48" />
-  CodeInspector Web App
+  CodeInspector
 </h1>
 
 <p align="center">
@@ -27,7 +27,7 @@ To clone this repository, follow the steps below:
 1. Open your terminal and navigate to the directory where you want to clone the repository.
 2. Run the following command:
 ```
-git clone https://github.com/yourusername/codeinspector-web-app.git
+https://github.com/ArchontisKostis/CodeInspector.git
 ```
 
 ### ⚙️ Install Dependencies
