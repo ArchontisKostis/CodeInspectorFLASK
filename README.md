@@ -32,3 +32,38 @@ git clone https://github.com/yourusername/codeinspector-web-app.git
 
 ### ⚙️ Install Dependencies
 This Flask web app requires certain dependencies to be installed. The list of dependencies, along with their versions, are listed in the requirements.txt file. Follow the steps below to install the dependencies:
+
+1. Navigate to the cloned repository's directory in your terminal.
+2. Create a virtual environment (optional but recommended) using the following command:
+```
+python -m venv venv
+```
+
+3. Activate the virtual environment (if created) using the appropriate command for your operating system:
+For Windows:
+```
+venv\Scripts\activate
+```
+
+For Unix/Linux
+```
+source venv/bin/activate
+```
+
+4. Install the dependencies using pip with the following command:
+```
+pip install -r requirements.txt
+```
+
+This will install all the required dependencies listed in the requirements.txt file into your virtual environment.
+
+## 🚀 Run the CodeInspector Web App
+
+After successfully installing the dependencies, you can run the CodeInspector web app locally. Follow the steps below:
+
+1. Make sure you are still in the cloned repository's directory and that your virtual environment is active (if created).
+2. Run the following command:
+```
+flask --app app run -h localhost -p 3000
+```
+This will start the CodeInspector web app and it will be accessible at http://localhost:3000 in your web browser.
