@@ -27,7 +27,7 @@ To clone this repository, follow the steps below:
 1. Open your terminal and navigate to the directory where you want to clone the repository.
 2. Run the following command:
 ```
-https://github.com/ArchontisKostis/CodeInspector.git
+git clone https://github.com/ArchontisKostis/CodeInspector.git
 ```
 
 ### ⚙️ Install Dependencies
