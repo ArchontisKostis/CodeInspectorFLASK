@@ -26,7 +26,7 @@ The app uses Flask for web development, Bootstrap for styling, PyDriller for rep
 To clone this repository, follow the steps below:
 1. Open your terminal and navigate to the directory where you want to clone the repository.
 2. Run the following command:
-```
+```bash
 git clone https://github.com/ArchontisKostis/CodeInspector.git
 ```
 
