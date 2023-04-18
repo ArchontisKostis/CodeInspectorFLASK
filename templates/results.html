@@ -58,7 +58,6 @@
                 </tr>
           </thead>
           <tbody>
-{#           #}
             {% for file in  analysis_results.project.modified_files%}
                 <tr>
                     <td>{{ file.name }}</td>
@@ -68,15 +67,15 @@
                     <td>
 {#                      Display the correct label depending on priority  #}
                         {% if file.priority == 'LOW' %}
-                          <span class="badge rounded-pill text-bg-success">LOW</span>
+                          <span class="badge rounded-pill text-bg-success">{{ file.priority }}</span>
                         {% elif file.priority == 'NORMAL' %}
-                          <span class="badge rounded-pill text-bg-primary">NORMAL</span>
+                          <span class="badge rounded-pill text-bg-primary">{{ file.priority }}</span>
                         {% elif file.priority == 'MEDIUM' %}
-                          <span class="badge rounded-pill text-bg-warning">MEDIUM</span>
+                          <span class="badge rounded-pill text-bg-warning">{{ file.priority }}</span>
                         {% elif file.priority == 'HIGH' %}
-                          <span class="badge rounded-pill text-bg-danger">HIGH</span>
+                          <span class="badge rounded-pill text-bg-danger">{{ file.priority }}</span>
                         {% else %}
-                          <span class="badge rounded-pill text-bg-secondary">NOT SET</span>
+                          <span class="badge rounded-pill text-bg-secondary">{{ file.priority }}</span>
                         {% endif %}
                     </td>
                 </tr>

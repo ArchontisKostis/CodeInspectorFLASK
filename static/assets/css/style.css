@@ -26,6 +26,21 @@ nav a{
   font-family: 'Poppins', sans-serif;
 }
 
+nav a img {
+  width: 5vh;
+  height: 5vh;
+}
+
+nav i {
+  color: white;
+  display: block;
+  font-size: 4vh;
+}
+
+nav i:hover {
+  cursor: not-allowed;
+}
+
 .form-control:focus {
   border-color: #dc3545;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
