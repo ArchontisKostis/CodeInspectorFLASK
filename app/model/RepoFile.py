@@ -22,7 +22,7 @@ class RepoFile:
         return self.metrics
 
     def set_priority(self, type):
-        print(self.name)
-        print(f'RepoFile -> Priority To add: {type}')
         self.priority = type
-        print(f'RepoFile -> Priority Now: {self.priority}')
+
+    def get_priority(self) -> str:
+        return self.priority

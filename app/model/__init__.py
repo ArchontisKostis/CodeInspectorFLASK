@@ -5,6 +5,18 @@ from flask import flash
 from app.model.PriorityType import PriorityType
 from app.model.RepoFile import RepoFile
 
+LOW_PRIORITY_COLOR = '#198754'
+MEDIUM_PRIORITY_COLOR = '#ffc107'
+HIGH_PRIORITY_COLOR = '#dc3545'
+NORMAL_PRIORITY_COLOR = '#0d6efd'
+
+PRIORITY_COLORS = [
+    LOW_PRIORITY_COLOR,
+    MEDIUM_PRIORITY_COLOR,
+    HIGH_PRIORITY_COLOR,
+    NORMAL_PRIORITY_COLOR
+]
+
 
 def is_not_already_added(file, list):
     for item in list:
@@ -41,18 +53,3 @@ def find_hotspot_priority(max_cc, max_churn, file_cc, file_churn):
             return 'HIGH'
     else:
         return None
-
-def generate_random_files(add_priority):
-    files = []
-    # Generate 30 RepoFile objects
-    for i in range(30):
-        file = RepoFile(f'File{i+1}')
-        file.set_metric('CC', random.randint(0, 100))
-        file.set_metric('NLOC', random.randint(0, 1000))
-        file.set_metric('CHURN', random.randint(0, 10000))
-        if add_priority:
-            priority_types = ['LOW', 'NORMAL', 'MEDIUM', 'HIGH'] # Convert enumeration to a list
-            random_priority = random.choice(priority_types) # Choose a random PriorityType
-            file.set_priority(random_priority)
-        files.append(file)
-    return files

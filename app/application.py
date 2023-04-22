@@ -7,12 +7,11 @@ from pydriller import Repository
 import plotly.express as plotx
 from pydriller.repository import MalformedUrl
 
-from app.model import generate_random_files
+from app.model import PRIORITY_COLORS
 from app.model.Project import Project
 from app.model.ProjectAnalyzer import ProjectAnalyzer
 
 blueprint = Blueprint('application', __name__)
-
 
 @blueprint.route('/', methods=('POST', 'GET'))
 def index():
@@ -50,16 +49,22 @@ def index():
             results = project_analyzer.get_analysis()
             project_files = project_to_analyze.modified_files
 
-            plot_data = {'name': [point.get_name() for point in project_files],
-                         'churn': [point.get_metric('churn') for point in project_files],
-                         'cc': [point.get_metric('cc') for point in project_files]
-                         }
-
             files = results.project.modified_files
             project_analyzer.prioritize_hotspots(files)
 
+            plot_data = {'name': [point.get_name() for point in project_files],
+                         'churn': [point.get_metric('churn') for point in project_files],
+                         'complexity': [point.get_metric('cc') for point in project_files],
+                         'priority': [point.get_priority() for point in project_files]
+                         }
+
             # Make Plotly figure
-            fig = plotx.scatter(plot_data, x='churn', y='cc', hover_name='name')
+            fig = plotx.scatter(
+                plot_data,
+                x='churn', y='complexity',
+                color='priority',
+                hover_name='name',
+                color_discrete_sequence=PRIORITY_COLORS)
             fig.update_layout(title=results.project_name)
 
             plot_html = fig.to_html(full_html=False)  # Convert the Plotly figure to an HTML string
