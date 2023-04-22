@@ -1,14 +1,10 @@
 @media print {
-    form, .alert, #print-analysis-btn {
-      display: none;
-    }
-
-    .card-link {
-        display: none;
-    }
-
     .print-only {
         display: block !important;
+    }
+
+    .no-print {
+        display: none !important;
     }
 
     .badge .rounded-pill .text-bg-success {

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post" data-bs-theme="light" id="repo-input-form">
+    <form class="no-print" method="post" data-bs-theme="light" id="repo-input-form">
         <label class="text-light">
             Repo URL:
             <input required type="url" class="form-control input-large mt-1" id="repo-url" name="repo-url" placeholder="E.g. https://github.com/ArchontisKostis/myUoMApp">
@@ -24,7 +24,7 @@
     <hr>
 
     {% for category, message in get_flashed_messages(with_categories=true) %}
-        <div class="alert alert-{{ category }}" role="alert">
+        <div class="alert alert-{{ category }} no-print" role="alert">
             <div>
                 {{ message }}
             </div>

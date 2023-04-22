@@ -94,3 +94,29 @@ input {
 .card, #chart {
   margin-bottom: 5vh;
 }
+
+table {
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40vh;
+  }
+
+  form label {
+    width: 100%;
+  }
+
+  #repo-url {
+    width: 100%;
+  }
+
+  form button[type=submit] {
+    width: 50vw;
+  }
+}
