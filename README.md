@@ -71,17 +71,13 @@ flask --app app run -h localhost -p 3000
 This will start the CodeInspector web app and it will be accessible at http://localhost:3000 in your web browser.
 
 <h2 style="margin: 0; padding: 0;">🎓 Credits</h2>
-<div style="display: flex; align-items: center;">
+<div style="display: flex; align-items: center; flex-direction: row-reverse;">
   <p>
     CodeInspector was created by Archontis E. Kostis with the support and guidance of Mr. <a href="https://users.uom.gr/~achat/">Alexander Hatzigeorgiou</a>, 
     Dean of the <a href="https://www.uom.gr/dai">Department of Applied Informatics</a> at University of Macedonia. 
     The project was inspired by a shared passion for improving software quality through data-driven and mining software repositories analysis. 
-    The development of this tool would not have been possible without the open-source contributions of the 
-    Flask, 
-    Bootstrap, 
-    PyDriller, 
-    and Plotly communities. 
+    The development of this tool would not have been possible without the open-source contributions of the Flask, Bootstrap, PyDriller, and Plotly communities. 
     We are grateful for their efforts in making high-quality software accessible to everyone.
   </p>
-  <img src="https://opensource.uom.gr/storage/2022/09/UOMLOGO.png" alt="University of Macedonia Logo" height="100" style="margin-left: 20px;">
+  <img src="https://opensource.uom.gr/storage/2022/09/UOMLOGO.p_ng" alt="University of Macedonia Logo" height="100" style="margin-left: 20px;">
 </div>
