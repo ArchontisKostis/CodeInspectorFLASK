@@ -50,7 +50,7 @@ def index():
             project_files = project_to_analyze.modified_files
 
             files = results.project.modified_files
-            project_analyzer.prioritize_hotspots(files)
+            project_analyzer.prioritize_hotspots()
 
             plot_data = {'name': [point.get_name() for point in project_files],
                          'churn': [point.get_metric('churn') for point in project_files],
