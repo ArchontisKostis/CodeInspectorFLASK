@@ -2,6 +2,7 @@ from flask import flash
 
 from app.model import find_max_metric_value, find_hotspot_priority
 from app.model.Analysis import Analysis
+from app.model.HotspotPrioritizer import HotspotPrioritizer
 from app.model.Project import Project
 from app.model.RepoDriller import RepoDriller
 from app.model.RepoFile import RepoFile
@@ -67,17 +68,10 @@ class ProjectAnalyzer:
                 if repo_file.name in java_file:
                     repo_file.set_metric('churn', java_files_churn[java_file])
 
-    def prioritize_hotspots(self, repo_file_list):
-        max_cc = find_max_metric_value('cc', repo_file_list)
-        max_churn = find_max_metric_value('churn', repo_file_list)
-        for file in repo_file_list:
-            file_cc = file.get_metric('cc')
-            file_churn = file.get_metric('churn')
-            priority = find_hotspot_priority(max_cc, max_churn, file_cc, file_churn)
-            print(f'ProjectAnalyzer -> Priority: {priority}')
-            # Set priority
-            file.set_priority(priority)
-
+    def prioritize_hotspots(self):
+        files = self.project.modified_files
+        prioritizer = HotspotPrioritizer(files)
+        prioritizer.prioritize_hotspots()
 
     def get_analysis(self):
         return self.analysis
