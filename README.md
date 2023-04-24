@@ -21,6 +21,8 @@ It takes a repository URL (currently for Java projects) and generates insights o
 The app uses Flask for web development, Bootstrap for styling, PyDriller for repository mining, and Plotly for visualizing data.
 
 ## 🛠️ Installation
+In order to run the CodeInspector web app, you need to have Python installed on your machine. 
+You can download and install the latest version of Python from the official Python website [here](https://www.python.org/downloads/).
 
 ### 🐙 Clone the Repository
 To clone this repository, follow the steps below:
@@ -67,3 +69,19 @@ After successfully installing the dependencies, you can run the CodeInspector we
 flask --app app run -h localhost -p 3000
 ```
 This will start the CodeInspector web app and it will be accessible at http://localhost:3000 in your web browser.
+
+<h2 style="margin: 0; padding: 0;">🎓 Credits</h2>
+<div style="display: flex; align-items: center;">
+  <p>
+    CodeInspector was created by Archontis E. Kostis with the support and guidance of Mr. <a href="https://users.uom.gr/~achat/">Alexander Hatzigeorgiou</a>, 
+    Dean of the <a href="https://www.uom.gr/dai">Department of Applied Informatics</a> at University of Macedonia. 
+    The project was inspired by a shared passion for improving software quality through data-driven and mining software repositories analysis. 
+    The development of this tool would not have been possible without the open-source contributions of the 
+    Flask, 
+    Bootstrap, 
+    PyDriller, 
+    and Plotly communities. 
+    We are grateful for their efforts in making high-quality software accessible to everyone.
+  </p>
+  <img src="https://opensource.uom.gr/storage/2022/09/UOMLOGO.png" alt="University of Macedonia Logo" height="100" style="margin-left: 20px;">
+</div>
