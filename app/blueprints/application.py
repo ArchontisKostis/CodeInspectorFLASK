@@ -1,5 +1,4 @@
 import datetime
-import logging
 import traceback
 
 from flask import Blueprint, render_template, request, flash, Request
@@ -7,6 +6,7 @@ from git import GitCommandError
 from pydriller import Repository
 from pydriller.repository import MalformedUrl
 
+from app.blueprints import convert_string_to_date, parse_form_data, handle_exception
 from app.model.Project import Project
 from app.analysis.ProjectAnalyzer import ProjectAnalyzer
 from app.plot.ScatterPlotCreator import ScatterPlotCreator
@@ -52,30 +52,14 @@ def index():
             plot_html = scatter_plot_creator.create_html_plot(results.project_name)
 
             flash('Analysis Complete', 'success')
-            print(form_data)
             return render_template('results.html', analysis_results=results, plot_html=plot_html, repo_url=repo_url)
 
     except MalformedUrl as e:
-        flash('The provided URL is not a git repository.', 'danger')
-        traceback.print_exc()
+        handle_exception('The provided URL is not a git repository.', 'danger')
     except GitCommandError as e:
-        flash('Fatal Git Error.', 'danger')
-        traceback.print_exc()
+        handle_exception('Fatal Git Error.', 'danger')
 
     return render_template('index.html')
 
 
-def parse_form_data(form_request: Request):
-    repo_url = form_request.form['repo-url']
-    from_date = form_request.form['from-date-input']
-    to_date = form_request.form['to-date-input']
 
-    # If the dates are empty make them None
-    if (from_date or to_date) == '':
-        from_date = None
-        to_date = None
-
-    return {'repo-url': repo_url, 'from-date': from_date, 'to-date': to_date}
-
-def convert_string_to_date(date_string: str):
-    return datetime.datetime.strptime(date_string, '%Y-%m-%d')

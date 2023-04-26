@@ -2,7 +2,7 @@ import logging
 import os
 from flask import Flask
 
-from app import application
+from app.blueprints import application
 
 
 def create_app(test_config=None):
