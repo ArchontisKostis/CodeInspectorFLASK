@@ -1,10 +1,10 @@
 import datetime
+import logging
 import traceback
 
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, Request
 from git import GitCommandError
 from pydriller import Repository
-import plotly.express as plotx
 from pydriller.repository import MalformedUrl
 
 from app.model.Project import Project
@@ -20,22 +20,20 @@ def index():
 
     try:
         if request.method == 'POST':
-            repo_url = request.form['repo-url']
-            from_date = request.form['from-date-input']
-            to_date = request.form['to-date-input']
+            form_data = parse_form_data(request)
+            repo_url = form_data['repo-url']
+            from_date = form_data['from-date']
+            to_date = form_data['to-date']
 
             # Create a repository based on wif we got any dates
             # If no dates were provided we will get the repo from the beginning
-            if (from_date or to_date) == '':
-                repo = Repository(
-                    repo_url,
-                    only_modifications_with_file_types=filetypes
-                )
+            if not (from_date or to_date):
+                repo = Repository(repo_url, only_modifications_with_file_types=filetypes)
             else:
+                since = convert_string_to_date(from_date)
+                to = convert_string_to_date(to_date)
                 repo = Repository(
-                    repo_url,
-                    since=datetime.datetime.strptime(from_date, '%Y-%m-%d'),
-                    to=datetime.datetime.strptime(to_date, '%Y-%m-%d'),
+                    repo_url, since=since, to=to,
                     only_modifications_with_file_types=filetypes
                 )
 
@@ -54,6 +52,7 @@ def index():
             plot_html = scatter_plot_creator.create_html_plot(results.project_name)
 
             flash('Analysis Complete', 'success')
+            print(form_data)
             return render_template('results.html', analysis_results=results, plot_html=plot_html, repo_url=repo_url)
 
     except MalformedUrl as e:
@@ -64,3 +63,19 @@ def index():
         traceback.print_exc()
 
     return render_template('index.html')
+
+
+def parse_form_data(form_request: Request):
+    repo_url = form_request.form['repo-url']
+    from_date = form_request.form['from-date-input']
+    to_date = form_request.form['to-date-input']
+
+    # If the dates are empty make them None
+    if (from_date or to_date) == '':
+        from_date = None
+        to_date = None
+
+    return {'repo-url': repo_url, 'from-date': from_date, 'to-date': to_date}
+
+def convert_string_to_date(date_string: str):
+    return datetime.datetime.strptime(date_string, '%Y-%m-%d')

@@ -1,10 +1,10 @@
+import datetime
 import logging
 import os
-import time
-
-from flask import Flask
+from flask import Flask, Request
 
 from app import application
+
 
 def create_app(test_config=None):
     logging.basicConfig(level=logging.DEBUG)
@@ -28,3 +28,5 @@ def create_app(test_config=None):
     app.register_blueprint(application.blueprint)
 
     return app
+
+
