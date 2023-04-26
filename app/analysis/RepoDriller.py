@@ -2,7 +2,7 @@ from flask import flash
 from pydriller import Repository
 
 from app.model import is_not_already_added
-from app.model.ProcessMetricsCalculator import ProcessMetricsCalculator
+from app.analysis.ProcessMetricsCalculator import ProcessMetricsCalculator
 
 class RepoDriller:
     def __init__(self, repo: Repository):

@@ -9,7 +9,7 @@ from pydriller.repository import MalformedUrl
 
 from app.model import PRIORITY_COLORS
 from app.model.Project import Project
-from app.model.ProjectAnalyzer import ProjectAnalyzer
+from app.analysis.ProjectAnalyzer import ProjectAnalyzer
 
 blueprint = Blueprint('application', __name__)
 

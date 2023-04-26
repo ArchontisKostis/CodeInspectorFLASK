@@ -1,10 +1,9 @@
 from flask import flash
 
-from app.model import find_max_metric_value, find_hotspot_priority
 from app.model.Analysis import Analysis
-from app.model.HotspotPrioritizer import HotspotPrioritizer
+from app.analysis.HotspotPrioritizer import HotspotPrioritizer
 from app.model.Project import Project
-from app.model.RepoDriller import RepoDriller
+from app.analysis.RepoDriller import RepoDriller
 from app.model.RepoFile import RepoFile
 
 
