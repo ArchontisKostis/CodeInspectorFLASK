@@ -1,7 +1,6 @@
-import datetime
 import logging
 import os
-from flask import Flask, Request
+from flask import Flask
 
 from app import application
 
