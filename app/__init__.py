@@ -2,7 +2,7 @@ import logging
 import os
 from flask import Flask
 
-from app.blueprints import application
+from app.blueprints import application, analysis, results
 
 
 def create_app(test_config=None):
@@ -25,6 +25,8 @@ def create_app(test_config=None):
         pass
 
     app.register_blueprint(application.blueprint)
+    app.register_blueprint(analysis.analysis_bp)
+    app.register_blueprint(results.results_bp)
 
     return app
 
