@@ -1,4 +1,6 @@
 import datetime
+import logging
+import time
 import traceback
 
 from flask import Request, flash
@@ -25,7 +27,15 @@ def parse_form_data(request: Request):
 def convert_string_to_date(date_string: str):
     return datetime.datetime.strptime(date_string, '%Y-%m-%d')
 
+
 # Function to handle exceptions
 def handle_exception(msg: str, alert_type: str):
-    flash(msg, alert_type)      # Flash a message to the user with the specified message and alert type
-    traceback.print_exc()       # Print a stack trace of the exception that occurred
+    flash(msg, alert_type)  # Flash a message to the user with the specified message and alert type
+    traceback.print_exc()  # Print a stack trace of the exception that occurred
+
+
+def calculate_time(start_time: float):
+    end_time = time.time()
+    total_time = end_time - start_time
+
+    logging.getLogger().info("Total time taken: {:.2f} seconds".format(total_time))
