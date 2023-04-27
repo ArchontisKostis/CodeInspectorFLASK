@@ -5,11 +5,11 @@ from app.plot.ScatterPlotCreator import ScatterPlotCreator
 results_bp = Blueprint('results', __name__)
 
 # Define a view function for the results
-@results_bp.route('/results/', methods=('GET',))
-def display_results():
+@results_bp.route('/results/<results>/<repo_url>', methods=('GET',))
+def display_results(results, repo_url):
     # Get the analysis results from the session variable
-    results = session.get('analysis_results', None)
-    repo_url = session.get('repo_url', None)
+    # results = session.get('analysis_results', None)
+    # repo_url = session.get('repo_url', None)
 
     # Helper Variables
     analyzed_project = results.project

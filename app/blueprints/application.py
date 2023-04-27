@@ -18,6 +18,7 @@ blueprint = Blueprint('application', __name__)
 
 # Define a view function for the home page
 @blueprint.route('/', methods=('POST', 'GET'))
+@blueprint.route('/home', methods=('POST', 'GET'))
 def index():
     if request.method == 'POST':
 

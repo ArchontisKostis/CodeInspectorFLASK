@@ -7,6 +7,7 @@ from pydriller.repository import MalformedUrl
 
 from app.analysis.ProjectAnalyzer import ProjectAnalyzer
 from app.blueprints import convert_string_to_date, handle_exception, calculate_time
+from app.blueprints.results import display_results
 from app.model.Project import Project
 
 analysis_bp = Blueprint('analysis', __name__)
@@ -53,13 +54,13 @@ def analyze(from_date, to_date):
         results = project_analyzer.get_analysis()
 
         # Store the analysis results and repo url in the session variable
-        session['analysis_results'] = results
-        session['repo_url'] = repo_url
+        # session['analysis_results'] = results
+        # session['repo_url'] = repo_url
 
         calculate_time(start_time)
         # Create results url and redirect
-        results_url = url_for('results.display_results')
-        return redirect(results_url)
+        results_url = url_for('results.display_results', results=results, repo_url=repo_url)
+        return display_results(results, repo_url)
 
     # Handle exceptions that may occur during the analysis
     except MalformedUrl as e:
