@@ -37,5 +37,8 @@ def handle_exception(msg: str, alert_type: str):
 def calculate_time(start_time: float):
     end_time = time.time()
     total_time = end_time - start_time
+    total_seconds = int(total_time)
+    minutes = total_seconds // 60
+    seconds = total_seconds % 60
 
-    logging.getLogger().info("Total time taken: {:.2f} seconds".format(total_time))
+    logging.getLogger().info("Total time taken: {} minutes and {} seconds".format(minutes, seconds))
